@@ -27,6 +27,68 @@ The following components were utilized to implement the required solution:
 ### Architecture
 ![](images/architecture.png)
 
+## Reproduce
+
+### Local setup
+* Install the below tools:
+  * [Terraform](https://www.terraform.io/downloads)
+  * [Google Cloud SDK](https://cloud.google.com/sdk/docs/install-sdk#deb)
+  * docker + docker-compose v2
+  
+### Cloud setup
+* In GCP, create a service principal with the following permissions:
+  * BigQuery Admin
+  * Storage Admin
+  * Storage Object Admin
+  * Dataproc Admin
+* Download the service principal authentication file and save it as `$HOME/.google/credentials/google_credentials_project.json`.
+
+* Ensure that the following APIs are enabled:
+  * Compute Engine API
+  * Cloud Dataproc API
+  * Cloud Dataproc Control API
+  * BigQuery API
+  * Bigquery Storage API
+  * Identity and Access Management (IAM) API
+  * IAM Service Account Credentials API
+  
+ 
+### Initializing Infrastructure (Terraform)
+
+* Perform the following to set up the required cloud infrastructure
+```shell
+cd terraform
+terraform init
+terraform plan
+terraform apply
+
+cd ..
+```
+### Data Ingestion
+
+* Setup airflow to perform data ingestion
+```shell
+cd airflow
+
+docker-compose build
+docker-compose up airflow-init
+docker-compose up -d
+```
+
+* Go to the aiflow UI at the web address `localhost:8080` and enable the `FHVHV_DATA_ETL` dag. 
+* This dag will ingest the month wise FHVHV data for year 2022, upload it to the data lake(GCS).
+
+### Data Transformation
+* Install and setup spark. [Follow this](). 
+
+* Enable and run the `Spark_FHVHV_ETL` dag.
+* This will intialize the below steps:
+    * Create a Dataproc cluster.
+    * Submit a spark code to GCS.
+    * submit a spark job to Dataproc for transformation and analysis and save processed data to GCS after partitioning.
+    * Save the processed data from GCS to BigQuery with clustering data based on month.
+    * Delete the DataProc cluster.
+    
 
 ## Dashboard
 
