@@ -2,6 +2,7 @@ airflow/test_email.py
 airflow/dags/__pycache__
 airflow/dags/test_email.py
 airflow/.ipynb_checkpoints
-airflow/dags/.ipynb_checkpoints
 airflow/airflow.cfg
 airflow/logs
+terraform/.terraform
+terraform/.terraform.lock.hcl
