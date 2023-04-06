@@ -21,6 +21,7 @@ The following components were utilized to implement the required solution:
 * Workflow orchestration: Airflow
 * Data Lake: Google Cloud Storage
 * Data Warehouse: Google BigQuery
+* Data Pipeline: Spark batch processing
 * Data Transformation: Spark via Google Dataproc
 * Reporting: Google Looker Studio
 
