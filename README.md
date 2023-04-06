@@ -79,7 +79,7 @@ docker-compose up -d
 * This dag will ingest the month wise FHVHV data for year 2022, upload it to the data lake(GCS).
 
 ### Data Transformation
-* Install and setup spark. [Follow this](). 
+* Install and setup spark [Follow this](https://github.com/Rohitjoshi07/FHVDataAnalysis/blob/main/sparkInstallation.md). 
 
 * Enable and run the `Spark_FHVHV_ETL` dag.
 * This will intialize the below steps:
