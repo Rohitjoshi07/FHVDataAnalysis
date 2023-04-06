@@ -64,13 +64,15 @@ CLUSTER_CONFIG = ClusterGenerator(
 default_args = {
     'owner': 'Rohit Joshi',
     'depends_on_past': False,
-    'email_on_failure': False,
+    'email_on_failure': True,
     'email_on_retry': False,
+    'email_on_success':True,
     'retries': 1,
     'start_date':  days_ago(1),
     'retry_delay': timedelta(minutes=3),
     'email_on_success': False,
-    'schedule_interval':'@once'
+    'schedule_interval':'@once',
+    'email': ['rohitjoshi9july@gmail.com']
 }
 
 @task(task_id="upload_pyspark_file")
